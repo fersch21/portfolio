@@ -19,15 +19,16 @@
 }
 
 .links span:hover {
-    background-color: rgba(101, 20, 20, 0.483);
+    background-color: rgba(100, 46, 199, 0.322);
 }
 
 .links span.active {
-    background-color: rgb(101, 20, 20, 0.483);
+    background-color: rgb(100, 46, 199, 0.322   );
 }
 
-/* end of header nav  */
+end of header nav 
 
+ 
 .header .icons {
     display: flex;
     align-items: center;
@@ -45,7 +46,7 @@
 }
 
 .icons span a:hover {
-    background-color: rgb(223, 3, 3);
+    background-color: rgb(28, 1, 92);
     transform: scale(1.2);
 }
 
@@ -99,7 +100,7 @@
 
     /* end of nav  */
 
-    .header .icons {
+     .header .icons {
         gap: 0.5rem;
     }
 
@@ -131,4 +132,4 @@
     .header nav .close:hover {
         opacity: 0.6;
     }
-}
+};

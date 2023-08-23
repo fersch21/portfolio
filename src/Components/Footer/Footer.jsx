@@ -1,82 +1,37 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import "./Footer.css";
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
-const Footer = () => {
-  const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [messageInput, setMessageInput] = useState("");
-  const [validate, setValidate] = useState("");
+export const ContactUs = () => {
+  const form = useRef();
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    if (!nameInput && !emailInput && !messageInput) {
-      setValidate("inputError");
-    }
 
-    if (!nameInput) {
-      setValidate("inputError");
-    } else if (!emailInput) {
-      setValidate("inputError");
-    } else if (!messageInput) {
-      setValidate("inputError");
-    } else {
-      setValidate("inputSuccess");
-    }
+    emailjs.sendForm('service_0i8x8lb', 'template_g3vf5rn', form.current, 'uOsqSintmsx8Z5vtH')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
   };
 
   return (
     <footer>
-      {/* circle span */}
-      <div className="circle"></div>
-
-      <h1>get in touch</h1>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="flex">
-          <div className="inputs">
-            <input
-              value={nameInput}
-              onChange={(e) => setNameInput(e.target.value)}
-              className={`nameInput ${validate}`}
-              type="text"
-              name="name"
-            />
-            <input
-              value={emailInput}
-              onChange={(e) => setEmailInput(e.target.value)}
-              className={`emailInput ${validate}`}
-              type="email"
-              name="email"
-            />
-          </div>
-          <div className="messageBox">
-            <textarea
-              value={messageInput}
-              onChange={(e) => setMessageInput(e.target.value)}
-              className={`messageInput ${validate}`}
-              name="massage"
-              id=""
-              cols="30"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
-        <div className="form_btn">
-          <button className="btn">submit</button>
-        </div>
+      <form className="form_btn color-#FFFFFF" ref={form} onSubmit={sendEmail} id="footer" >
+        <label>Name</label>
+        <input type="text" name="user_name" />
+        <label>Email</label>
+        <input type="email" name="user_email" />
+        <label>Message</label>
+        <textarea name="message" />
+        <input className="btn" type="submit" value="Send" />
       </form>
+    </footer> 
       
-      <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-      <script type="text/javascript">
-        emailjs.init('uOsqSintmsx8Z5vtH')
-      </script>
-
-      <p className="copyright">
-        &copy; Designed and Developed by ® Fer Sch. 2023
-      </p>
-    </footer>
+      
   );
 };
 
-export default Footer;
+export default ContactUs;
